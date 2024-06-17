@@ -45,71 +45,9 @@ body {
   <body>
     <div class="topnav">
       <a class="active" href="#home">Home</a>
-      <a href="#news">News</a>
+      <a href="bot.html">Bot</a>
       <a href="#contact">Contact</a>
       <a href="#about">About</a>
     </div>
-    <h1>
-      Neuro Stock
-    </h1>
-    <textarea id="in"></textarea>
-    <br><br>
-    <button onclick="submit();">Submit</button>
-    <br><br>
-    <div id="out">
-      
-    </div>
-    <script src="
-https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js
-"></script>
-    <script src="  https://unpkg.com/showdown/dist/showdown.min.js"></script>
-    <script>
-      var converter = new showdown.Converter();
-                const md = window.markdownit();
-    
-      async function run(text) {
-            const rawResponse = await fetch('https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=AIzaSyDmD3DktQSZD-OqblKN8c_vahPiVH7pSME', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(
-                    {
-                        "contents":[
-                            {
-                                "role": "user",
-                                "parts":[
-                                    {
-                                        "text": text
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                )
-            });
-            const content = await rawResponse.json();
-
-            console.log(content.candidates[0].content.parts[0].text);
-        var a = content.candidates[0].content.parts[0].text.replaceAll('\n', '<br>').replace('\\n', '<br>');
-        
-       const result = md.render(a).replaceAll('&lt;', '<').replaceAll('&gt;', '>').replaceAll('*', '&bull;');
-        
-        document.getElementById('out').innerHTML = result;
-      document.getElementById('in').disabled = false;
-        
-        }
-      
-    function submit() {
-      var val = document.getElementById('in').value;
-      document.getElementById('in').value = "";
-      document.getElementById('in').disabled = true;
-      
-      run(val);
-      
-      
-      
-    }
-    </script>
   </body>
 </html>
